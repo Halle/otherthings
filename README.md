@@ -24,7 +24,7 @@ TWITTER_ACCESS_TOKEN_SECRET
 MY_TWITTER_ACCOUNT
 ```
 
-You also need to install the Python Twitter library Tweepy (`pip install tweepy` is a pretty likely-to-work approach). I used Python and Tweepy 3.6. In the 1.0 version, Tweepy needs a patch: https://github.com/tweepy/tweepy/issues/1081#issuecomment-423486837
+You also need to install the Python Twitter library Tweepy (`pip install tweepy` is a pretty likely-to-work approach). I used Python and Tweepy 3.6. In this script's 1.0 version, Tweepy needs a patch: https://github.com/tweepy/tweepy/issues/1081#issuecomment-423486837
 
 ## Philosophy
 
