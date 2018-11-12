@@ -1,10 +1,12 @@
-otherthings is a python script intended to be run in the console which I wrote to scratch a very specific itch, namely, what are the major routes by which I find myself checking Twitter when I would prefer to be on a break, and what are the most minimal-possible ameliorations.
+## otherthings
 
-The most consistent way that my interest in taking a break is subverted is via my desire not to be rude to an acquaintance who DMs me. I get an email notification of a DM, it is someone whose email I don't know, and I have to log in to answer. I've always wanted a way to respond to these DM email notifications via email, but I like this even better: you can just send a DM without line breaks from the command line. It's the perfect way to just let someone know you're on a break but would be happy to talk to them via email, or slow-chat with them from the command line in a minimal way that keeps you out of your timeline. This is otherthings' "dm" argument.
+**otherthings** is a python script, intended to be run in the terminal, which I wrote to scratch a very specific itch: what are the major routes by which I find myself checking Twitter when I would prefer to be on a break, and what are the most minimal-possible accomodations to them?
 
-The related issue is if you worry that someone might mention you on Twitter in a way you'd rather not be oblivious to (otherthings' "act" argument shows you recent activity including mentions) and perhaps should respond to ("dm" is the proposed way to do this, assuming it's someone you can DM).
+The most consistent way that breaks are subverted is via a desire not to be rude to an acquaintance who DMs me. I get an email notification of a DM, it's someone whose email I don't know, and I have to log in to answer. I've always wanted a way to respond to these DM email notifications via email, but I like this even better: you can just send a DM without line breaks from the command line. It's the perfect way to just let someone know you're on a break but would be happy to talk to them via email, or slow-chat with them from the command line in a minimal way that keeps you out of your timeline. This is otherthings' "dm" argument.
 
-The less-flattering runners-up to these two big routes are the usual ego stuff: do I have new followers/unfollowers, are people liking my last pre-break tweets. otherthings' "foll" argument shows changes in your followers and saves those changes to a history file since they way it calculates this is transient and non-repeatable, and "act" shows your recent tweets and their likes.
+The related issue is if you worry that someone might mention you on Twitter in a way you'd rather not be oblivious to (otherthings' "act" argument shows you recent activity including mentions), and perhaps should respond to ("dm" is the proposed way to do this, assuming it's someone you can DM).
+
+The less-flattering runners-up to these two big routes are the usual ego stuff: do I have new followers/unfollowers, are people liking my last pre-break tweets. otherthings' "foll" argument shows changes in your followers and saves those changes to a history file since they way it calculates this is transient and non-repeatable (foll is short for both followers and folly), and "act" shows your recent tweets and their likes.
 
 ## Requirements
 
@@ -20,7 +22,7 @@ You also need to install the Python Twitter library Tweepy. I used Python and Tw
 
 I wrote this on a Sunday morning (yesterday morning, at the time of writing this README for the first time) and the goals were that the script should be entirely self-contained and the most maintainably-minimal implementation of the requirements, i.e. no stack, no hosting, no structured data or data persistence, and that it should be manually run by the person whose account it is intended to check, only when they feel the need. That is the reason for decisions like using text files for transient data operations and keeping a textual history. 
 
-I would consider it more of a success if I never altered it again and enjoyed its simplicity than if it got more features – the perfect Sunday-morning fix to a real problem. The more features it gets, the more likely it is to become something similar to a CLI Twitter client, which defeats the goal of taking a break, even if it's cute.
+I would consider it more of a success if I never altered it again and just enjoyed its simplicity than if it got more features – the perfect Sunday-morning fix to a real problem. The more features it gets, the more likely it is to become something similar to a CLI Twitter client, which defeats the goal of taking a break, even if it's cute.
 
 The other philosophical feeling is that these are things you shouldn't easily trust others to do on your behalf, so this keeps a 1:1 relationship between the party responsible for the Twitter developer app and the party whose account the script operates.
 
