@@ -42,7 +42,7 @@ My Twitter account has been immovably fixed at about 930 followers for several y
 
 ## Usage
 
-run `python otherthings.py help` to see usage. If you want to see old follower/unfollower info, it is stored in a file generated at the same level as the script which is called followchangeshistory.txt. It should be ignored by the .gitignore along with the other text files the script creates.
+run `python otherthings.py help` to see usage. If you want to see old follower/unfollower info, it is stored in a file generated at the same level as the script which is called `followchangeshistory.txt`. It should be ignored by the .gitignore along with the other text files the script creates.
 
 ## Why is it called otherthings?
 
