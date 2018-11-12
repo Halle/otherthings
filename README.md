@@ -14,9 +14,17 @@ You need an approved Twitter developer account (get one at https://developer.twi
 
 That means that you also need a website you can enter into the Twitter developer application process (I think saying you're a hobbyist should be sufficient for this app) and enter into the various app fields which require a site. 
 
-Once you have this set up, the script operates under the expectation that those values are exported environmental variables, along with an environmental variable which is the name of your account. 
+Once you have this set up, the script operates under the expectation that those values are exported environmental variables, along with an environmental variable which is the name of your account (if you aren't sure how to do this, I recommend asking someone who is familiar for some help with it in order to avoid accidents with information that could let someone control your Twitter account):
 
-You also need to install the Python Twitter library Tweepy. I used Python and Tweepy 3.6. In the 1.0 version, Tweepy needs a patch, which is described at the top of the script file.
+```
+TWITTER_CONSUMER_KEY
+TWITTER_CONSUMER_SECRET
+TWITTER_ACCESS_TOKEN
+TWITTER_ACCESS_TOKEN_SECRET
+MY_TWITTER_ACCOUNT
+```
+
+You also need to install the Python Twitter library Tweepy (`pip install tweepy` is a pretty likely-to-work approach). I used Python and Tweepy 3.6. In the 1.0 version, Tweepy needs a patch: https://github.com/tweepy/tweepy/issues/1081#issuecomment-423486837
 
 ## Philosophy
 
