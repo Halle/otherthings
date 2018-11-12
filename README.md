@@ -2,7 +2,7 @@
 
 **otherthings** is a python script, intended to be run in the terminal, which I wrote to scratch a very specific itch: what are the major routes by which I find myself checking Twitter when I would prefer to be on a break, and what are the most minimal-possible accomodations to them?
 
-The most consistent way that breaks are subverted is via a desire not to be rude to an acquaintance who DMs me. I get an email notification of a DM, it's someone whose email I don't know, and I have to log in to answer. I've always wanted a way to respond to these DM email notifications via email, but I like this even better: you can just send a DM without line breaks from the command line. It's the perfect way to just let someone know you're on a break but would be happy to talk to them via email, or slow-chat with them from the command line in a minimal way that keeps you out of your timeline. This is otherthings' "dm" argument.
+The most consistent way my breaks are subverted is via a desire not to be rude to an acquaintance who DMs me. I get an email notification of a DM, it's someone whose email I don't know, and I have to log in to answer. I've always wanted a way to respond to these DM email notifications via email, but I like this even better: you can just send a DM without line breaks from the command line. It's the perfect way to just let someone know you're on a break but would be happy to talk to them via email, or slow-chat with them from the command line in a minimal way that keeps you out of your timeline. This is otherthings' "dm" argument.
 
 The related issue is if you worry that someone might mention you on Twitter in a way you'd rather not be oblivious to (otherthings' "act" argument shows you recent activity including mentions), and perhaps should respond to ("dm" is the proposed way to do this, assuming it's someone you can DM).
 
@@ -30,7 +30,7 @@ I guess the strongest philosophical position here is that I think it's the Twitt
 
 ## Assumptions
 
-My Twitter account has been immovably fixed at about 930 followers for several years now. Apparently everyone who enjoys my writing and preoccupations on Twitter already knows about them 😂 . That means that this script could have very different implications for someone with a lot of followers or more dm activity or any number of different usages from my genx, not-especially-social-media-compatible self. I'm pretty sure at least that the sleep times for paging through follower lists would have to be increased, but there are probably other assumption mismatches.
+My Twitter account has been immovably fixed at about 930 followers for several years now. Apparently everyone who enjoys my writing and preoccupations on Twitter already knows about them 😂 . That means that this script could have very different implications for someone with a lot of followers or more DM activity or any number of different usages from my genx, not-especially-social-media-compatible self. I'm pretty sure at least that the sleep times for paging through follower lists would have to be increased, but there are probably other assumption mismatches.
 
 ## Usage
 
