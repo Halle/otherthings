@@ -171,14 +171,10 @@ def show_followers_and_unfollowers(api, account):
             status_report += f"\nFollow changes as of {time.ctime()}:\n"
             # If the followers set isn't equal to an empty set, report on its contents:
             if followers != set():
-                status_report += "-- New Followers:\n"
-                for follower in followers:  # Append usernames to status report string.
-                    status_report += f"---- {get_name_for_id(api, follower)}\n"
+                status_report += lookup_user_for_list(api, False, followers)
             # If the unfollowers set isn't equal to an empty set, report on its contents:
             if unfollowers != set():
-                status_report += "-- New Unfollowers:\n"
-                for unfollower in unfollowers:  # Append usernames to status report string.
-                    status_report += f"---- {get_name_for_id(api, unfollower)}\n"
+                status_report += lookup_user_for_list(api, True, unfollowers)
             # Write out the status report to the history file:
             with open(follow_changes_history_file, 'a', encoding='utf-8') as file:
                 file.write(status_report)
@@ -196,6 +192,18 @@ def show_followers_and_unfollowers(api, account):
         spinner.stop()
     spinner.stop()
 
+
+def lookup_user_for_list(api, isUnfollowerList, followers):
+    status_report_title = "-- New Unfollowers:\n" if isUnfollowerList else "-- New Followers:\n"
+    status_report_additions = status_report_title
+    for follower in followers:  # Append usernames to status report string.
+        try:
+            real_name = get_name_for_id(api, follower)
+        except Exception as e:
+            real_name = "RemovedUser" # When Twitter removes an account, no user.
+            pass
+        status_report_additions += f"---- {real_name}\n"
+    return status_report_additions
 
 def show_activity(api, account):
     try:
