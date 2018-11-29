@@ -197,7 +197,7 @@ def lookup_user_for_list(api, isUnfollowerList, followers):
     status_report_additions = status_report_title
     for follower in followers:  # Append usernames to status report string.
         try:
-            real_name = get_name_for_id(api, follower)
+            real_name = get_name_for_id(api, follower, None)
         except Exception as e:
             real_name = "RemovedUser" # When Twitter removes an account, no user.
             pass
@@ -217,20 +217,28 @@ def show_activity(api, account):
             print(f"---- {tweet.favorite_count} favorites, {tweet.retweet_count} retweets")
         dms = api.direct_messages(count=10) # This API from the patch appears to need a little work.
         print("\nLast DMs:")
+        username_cache_dictionary = {}
         for dm in dms:
             for event in dm.events:
                 message_text = event['message_create']['message_data']['text']
                 message_sender = event['message_create']['sender_id']
                 message_recipient = event['message_create']['target']['recipient_id']
-                sender_name = get_name_for_id(api, message_sender)
-                recipient_name = get_name_for_id(api, message_recipient)
-                print(f"{sender_name}-->{recipient_name}: {message_text}")
+                sender_name = get_name_for_id(api, message_sender, username_cache_dictionary)
+                if not message_sender in username_cache_dictionary:
+                    username_cache_dictionary[message_sender] = sender_name
+                recipient_name = get_name_for_id(api, message_recipient, username_cache_dictionary)
+                if not message_recipient in username_cache_dictionary:
+                    username_cache_dictionary[message_recipient] = recipient_name
+                print(f"{sender_name} --> {recipient_name}: \"{message_text[0:50]}…\"")
             break # Stop after one since this data is repeated.
     except Exception as e:
         print(f"Exception: {e}")
 
 
-def get_name_for_id(api, id):
+def get_name_for_id(api, id, optional_username_cache_dictionary):
+    if optional_username_cache_dictionary is not None:
+        if id in optional_username_cache_dictionary:
+            return optional_username_cache_dictionary[id]
     user = api.get_user(id)
     name = user.screen_name
     time.sleep(1)
