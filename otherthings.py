@@ -4,10 +4,9 @@ import sys
 import time
 import threading
 
-# Note: At the initial time of this writing (November 2018), tweepy required a
-# crude patch in order to be able to do DMs, and the DMs had to be sent as
-# JSON as seen below, which will almost certainly change after tweepy next
-# updates: https://github.com/tweepy/tweepy/issues/1081#issuecomment-423486837
+# Note: At the initial time of this writing (November 2018), tweepy required this patch:
+# https://github.com/tweepy/tweepy/issues/1081#issuecomment-423486837 and this PR:
+# https://github.com/tweepy/tweepy/pull/1109
 # The original version of this script was written for Python 3.6.7.
 
 
@@ -216,6 +215,17 @@ def show_activity(api, account):
         for tweet in tweets:
             print(f"-- {tweet.text}")
             print(f"---- {tweet.favorite_count} favorites, {tweet.retweet_count} retweets")
+        dms = api.direct_messages(count=10) # This API from the patch appears to need a little work.
+        print("\nLast DMs:")
+        for dm in dms:
+            for event in dm.events:
+                message_text = event['message_create']['message_data']['text']
+                message_sender = event['message_create']['sender_id']
+                message_recipient = event['message_create']['target']['recipient_id']
+                sender_name = get_name_for_id(api, message_sender)
+                recipient_name = get_name_for_id(api, message_recipient)
+                print(f"{sender_name}-->{recipient_name}: {message_text}")
+            break # Stop after one since this data is repeated.
     except Exception as e:
         print(f"Exception: {e}")
 
