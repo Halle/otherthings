@@ -220,16 +220,20 @@ def show_activity(api, account):
         username_cache_dictionary = {}
         for dm in dms:
             for event in dm.events:
-                message_text = event['message_create']['message_data']['text']
-                message_sender = event['message_create']['sender_id']
-                message_recipient = event['message_create']['target']['recipient_id']
-                sender_name = get_name_for_id(api, message_sender, username_cache_dictionary)
-                if not message_sender in username_cache_dictionary:
-                    username_cache_dictionary[message_sender] = sender_name
-                recipient_name = get_name_for_id(api, message_recipient, username_cache_dictionary)
-                if not message_recipient in username_cache_dictionary:
-                    username_cache_dictionary[message_recipient] = recipient_name
-                print(f"{sender_name} --> {recipient_name}: \"{message_text[0:50]}…\"")
+                try:
+                    message_text = event['message_create']['message_data']['text']
+                    message_sender = event['message_create']['sender_id']
+                    message_recipient = event['message_create']['target']['recipient_id']
+                    sender_name = get_name_for_id(api, message_sender, username_cache_dictionary)
+                    if not message_sender in username_cache_dictionary:
+                        username_cache_dictionary[message_sender] = sender_name
+                    recipient_name = get_name_for_id(api, message_recipient, username_cache_dictionary)
+                    if not message_recipient in username_cache_dictionary:
+                        username_cache_dictionary[message_recipient] = recipient_name
+                    print(f"{sender_name} --> {recipient_name}: \"{message_text[0:50]}\"")
+                except KeyError: # Let's not stop for a key error.
+                    print(f"There was an error getting a direct message, continuing.")
+                    pass
             break # Stop after one since this data is repeated.
     except Exception as e:
         print(f"Exception: {e}")
