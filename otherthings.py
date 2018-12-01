@@ -209,11 +209,13 @@ def show_activity(api, account):
         print("Mentions:")
         mentions = api.mentions_timeline(10)
         for mention in mentions:
-            print(f"-- {mention.user.name}: {mention.text}")
+            text = mention.text.replace("\n", " ")
+            print(f"-- {mention.user.name}: {text}")
         print("\nMy tweets:")
         tweets = api.user_timeline(screen_name=account, count=10)
         for tweet in tweets:
-            print(f"-- {tweet.text}")
+            text = tweet.text.replace("\n", " ")
+            print(f"-- {text}")
             print(f"---- {tweet.favorite_count} favorites, {tweet.retweet_count} retweets")
         dms = api.direct_messages(count=10) # This API from the patch appears to need a little work.
         print("\nLast DMs:")
@@ -230,7 +232,8 @@ def show_activity(api, account):
                     recipient_name = get_name_for_id(api, message_recipient, username_cache_dictionary)
                     if not message_recipient in username_cache_dictionary:
                         username_cache_dictionary[message_recipient] = recipient_name
-                    print(f"{sender_name} --> {recipient_name}: \"{message_text[0:50]}\"")
+                    text = message_text.replace("\n", " ")
+                    print(f"{sender_name} --> {recipient_name}: \"{text}\"")
                 except KeyError: # Let's not stop for a key error.
                     print(f"There was an error getting a direct message, continuing.")
                     pass
